@@ -133,13 +133,7 @@ textarea:focus{border-color:#D85A30}
       <input type="email" placeholder="name@konai.com">
       <label class="fl">비밀번호</label>
       <input type="password" placeholder="비밀번호 입력">
-      <input id="api-key-input" type="password" placeholder="Claude API 키 입력 (sk-ant-...)" style="width:100%;padding:10px 14px;border:0.5px solid #d8d7d0;border-radius:8px;font-size:13px;font-family:inherit;margin-bottom:10px;outline:none;background:#fafaf8">
-      <button class="login-btn-full" onclick="
-        var k=document.getElementById('api-key-input').value.trim();
-        if(!k){alert('API 키를 입력해주세요');return;}
-        sessionStorage.setItem('claude_api_key',k);
-        go('s-home');
-      ">로그인</button>
+      <button class="login-btn-full" onclick="go('s-home')">로그인</button>
     </div>
   </div>
 </div>
@@ -1015,8 +1009,7 @@ const CLAUDE_API_KEY = 'sk-ant-api03-G2VJu6B1xL3aQnnjmz9EaEJP9zAFEHE-oOgTA5mvBXg
 
 // ─── 화면 전환 ───
 function go(id){
-  if(id==='s-login' && sessionStorage.getItem('claude_api_key')){ id='s-home'; }
-  document.querySelectorAll('.screen').forEach(s=>{
+    document.querySelectorAll('.screen').forEach(s=>{
     s.classList.remove('active');
     s.style.display='';
   });
@@ -1026,14 +1019,9 @@ function go(id){
 
 // ─── Claude API 공통 호출 ───
 async function callClaude(prompt, maxTokens=800){
-  const res = await fetch('https://api.anthropic.com/v1/messages',{
+  const res = await fetch('/.netlify/functions/claude',{
     method:'POST',
-    headers:{
-      'Content-Type':'application/json',
-      'x-api-key':'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',
-      'anthropic-version':'2023-06-01',
-      'anthropic-dangerous-direct-browser-access':'true'
-    },
+    headers:{'Content-Type':'application/json'},
     body:JSON.stringify({
       model:'claude-sonnet-4-6',
       max_tokens: maxTokens,
@@ -1042,10 +1030,13 @@ async function callClaude(prompt, maxTokens=800){
   });
   if(!res.ok){
     const err = await res.json().catch(()=>({}));
-    throw new Error(err.error?.message || `API 오류 (${res.status})`);
+    throw new Error(err.error?.message || 'API 오류 ('+res.status+')');
   }
   const data = await res.json();
-  return data.content.map(b=>b.text||'').join('');
+  if(data.content && Array.isArray(data.content)) return data.content.map(function(b){return b.text||'';}).join('');
+  if(data.text) return data.text;
+  if(data.message) return data.message;
+  throw new Error('응답 오류: '+JSON.stringify(data).slice(0,80));
 }
 
 // ─── 로딩 표시 헬퍼 ───
@@ -2442,14 +2433,6 @@ function selGrade(btn, group){
   </div>
 </div>
 
-<script>
-// 이미 API 키 있으면 로그인 화면 스킵
-window.addEventListener('DOMContentLoaded', function(){
-  if(sessionStorage.getItem('claude_api_key')){
-    go('s-home');
-  }
-});
-</script>
 </body>
 </html>
 <!-- 임시 - 스크립트 닫기 전에 추가용 마커 확인 -->
