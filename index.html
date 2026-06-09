@@ -273,6 +273,7 @@ textarea:focus{border-color:#D85A30}
               <input type="number" min="60" max="100" value="88" style="width:80px;height:34px;text-align:center;font-size:16px;font-weight:700;border:0.5px solid #d8d7d0;border-radius:8px">
               
             </div>
+            <textarea class="goal-result-input" placeholder="이 목표에 대한 달성 내용을 입력해주세요" style="width:100%;border:0.5px solid #d8d7d0;border-radius:6px;padding:6px 8px;font-size:12px;font-family:inherit;background:#fafaf8;min-height:50px;resize:none;margin-top:4px;outline:none"></textarea>
           </div>
           <div class="goal-row">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
@@ -286,6 +287,7 @@ textarea:focus{border-color:#D85A30}
               <input type="number" min="60" max="100" value="95" style="width:80px;height:34px;text-align:center;font-size:16px;font-weight:700;border:0.5px solid #d8d7d0;border-radius:8px">
               
             </div>
+            <textarea class="goal-result-input" placeholder="이 목표에 대한 달성 내용을 입력해주세요" style="width:100%;border:0.5px solid #d8d7d0;border-radius:6px;padding:6px 8px;font-size:12px;font-family:inherit;background:#fafaf8;min-height:50px;resize:none;margin-top:4px;outline:none"></textarea>
           </div>
           <div class="goal-row">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
@@ -298,6 +300,7 @@ textarea:focus{border-color:#D85A30}
               <span style="font-size:12px;color:#999">달성 점수 (60~100)</span>
               <input type="number" min="60" max="100" placeholder="점수" style="width:80px;height:34px;text-align:center;font-size:16px;font-weight:700;border:0.5px solid #d8d7d0;border-radius:8px">
             </div>
+            <textarea class="goal-result-input" placeholder="이 목표에 대한 달성 내용을 입력해주세요" style="width:100%;border:0.5px solid #d8d7d0;border-radius:6px;padding:6px 8px;font-size:12px;font-family:inherit;background:#fafaf8;min-height:50px;resize:none;margin-top:4px;outline:none"></textarea>
           </div>
         </div>
         <div class="card">
@@ -531,6 +534,28 @@ textarea:focus{border-color:#D85A30}
       <div class="content">
         <div class="ptitle">팀원 평가 (1차)</div>
         <div class="psub">HR팀 · 2026년 상반기</div>
+        <button onclick="toggleBulkTable()" id="bulk-toggle-btn" style="background:#185FA5;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;margin-bottom:12px">일괄 조정 테이블 열기</button>
+        <div id="bulk-table-section" style="display:none;margin-bottom:16px;overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse;font-size:12px">
+            <thead>
+              <tr style="background:#f1f5f9">
+                <th style="padding:8px 10px;border:0.5px solid #e2e8f0;text-align:left">이름</th>
+                <th style="padding:8px 10px;border:0.5px solid #e2e8f0;text-align:center">성과점수</th>
+                <th style="padding:8px 10px;border:0.5px solid #e2e8f0;text-align:center">직무역량</th>
+                <th style="padding:8px 10px;border:0.5px solid #e2e8f0;text-align:center">공통역량</th>
+                <th style="padding:8px 10px;border:0.5px solid #e2e8f0;text-align:center">종합</th>
+                <th style="padding:8px 10px;border:0.5px solid #e2e8f0;text-align:center">등급</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:6px 10px;border:0.5px solid #e2e8f0">곽민정</td><td style="border:0.5px solid #e2e8f0;text-align:center"><input type="number" min="0" max="100" style="width:55px;text-align:center;border:0.5px solid #d8d7d0;border-radius:4px;padding:3px" onchange="calcBulkTotal(this)"></td><td style="border:0.5px solid #e2e8f0;text-align:center"><input type="number" min="0" max="100" style="width:55px;text-align:center;border:0.5px solid #d8d7d0;border-radius:4px;padding:3px" onchange="calcBulkTotal(this)"></td><td style="border:0.5px solid #e2e8f0;text-align:center"><input type="number" min="0" max="100" style="width:55px;text-align:center;border:0.5px solid #d8d7d0;border-radius:4px;padding:3px" onchange="calcBulkTotal(this)"></td><td class="bulk-total" style="padding:6px 10px;border:0.5px solid #e2e8f0;text-align:center;color:#aaa">--</td><td style="border:0.5px solid #e2e8f0;text-align:center"><select style="border:0.5px solid #d8d7d0;border-radius:4px;padding:3px;font-size:11px"><option>-</option><option>S</option><option>A</option><option>B</option><option>C</option><option>D</option></select></td></tr>
+              <tr><td style="padding:6px 10px;border:0.5px solid #e2e8f0">이지연</td><td style="border:0.5px solid #e2e8f0;text-align:center"><input type="number" min="0" max="100" style="width:55px;text-align:center;border:0.5px solid #d8d7d0;border-radius:4px;padding:3px" onchange="calcBulkTotal(this)"></td><td style="border:0.5px solid #e2e8f0;text-align:center"><input type="number" min="0" max="100" style="width:55px;text-align:center;border:0.5px solid #d8d7d0;border-radius:4px;padding:3px" onchange="calcBulkTotal(this)"></td><td style="border:0.5px solid #e2e8f0;text-align:center"><input type="number" min="0" max="100" style="width:55px;text-align:center;border:0.5px solid #d8d7d0;border-radius:4px;padding:3px" onchange="calcBulkTotal(this)"></td><td class="bulk-total" style="padding:6px 10px;border:0.5px solid #e2e8f0;text-align:center;color:#aaa">--</td><td style="border:0.5px solid #e2e8f0;text-align:center"><select style="border:0.5px solid #d8d7d0;border-radius:4px;padding:3px;font-size:11px"><option>-</option><option>S</option><option>A</option><option>B</option><option>C</option><option>D</option></select></td></tr>
+              <tr><td style="padding:6px 10px;border:0.5px solid #e2e8f0">서채원</td><td style="border:0.5px solid #e2e8f0;text-align:center"><input type="number" min="0" max="100" style="width:55px;text-align:center;border:0.5px solid #d8d7d0;border-radius:4px;padding:3px" onchange="calcBulkTotal(this)"></td><td style="border:0.5px solid #e2e8f0;text-align:center"><input type="number" min="0" max="100" style="width:55px;text-align:center;border:0.5px solid #d8d7d0;border-radius:4px;padding:3px" onchange="calcBulkTotal(this)"></td><td style="border:0.5px solid #e2e8f0;text-align:center"><input type="number" min="0" max="100" style="width:55px;text-align:center;border:0.5px solid #d8d7d0;border-radius:4px;padding:3px" onchange="calcBulkTotal(this)"></td><td class="bulk-total" style="padding:6px 10px;border:0.5px solid #e2e8f0;text-align:center;color:#aaa">--</td><td style="border:0.5px solid #e2e8f0;text-align:center"><select style="border:0.5px solid #d8d7d0;border-radius:4px;padding:3px;font-size:11px"><option>-</option><option>S</option><option>A</option><option>B</option><option>C</option><option>D</option></select></td></tr>
+              <tr><td style="padding:6px 10px;border:0.5px solid #e2e8f0">김수지</td><td style="border:0.5px solid #e2e8f0;text-align:center"><input type="number" min="0" max="100" style="width:55px;text-align:center;border:0.5px solid #d8d7d0;border-radius:4px;padding:3px" onchange="calcBulkTotal(this)"></td><td style="border:0.5px solid #e2e8f0;text-align:center"><input type="number" min="0" max="100" style="width:55px;text-align:center;border:0.5px solid #d8d7d0;border-radius:4px;padding:3px" onchange="calcBulkTotal(this)"></td><td style="border:0.5px solid #e2e8f0;text-align:center"><input type="number" min="0" max="100" style="width:55px;text-align:center;border:0.5px solid #d8d7d0;border-radius:4px;padding:3px" onchange="calcBulkTotal(this)"></td><td class="bulk-total" style="padding:6px 10px;border:0.5px solid #e2e8f0;text-align:center;color:#aaa">--</td><td style="border:0.5px solid #e2e8f0;text-align:center"><select style="border:0.5px solid #d8d7d0;border-radius:4px;padding:3px;font-size:11px"><option>-</option><option>S</option><option>A</option><option>B</option><option>C</option><option>D</option></select></td></tr>
+              <tr><td style="padding:6px 10px;border:0.5px solid #e2e8f0">강병석</td><td style="border:0.5px solid #e2e8f0;text-align:center"><input type="number" min="0" max="100" style="width:55px;text-align:center;border:0.5px solid #d8d7d0;border-radius:4px;padding:3px" onchange="calcBulkTotal(this)"></td><td style="border:0.5px solid #e2e8f0;text-align:center"><input type="number" min="0" max="100" style="width:55px;text-align:center;border:0.5px solid #d8d7d0;border-radius:4px;padding:3px" onchange="calcBulkTotal(this)"></td><td style="border:0.5px solid #e2e8f0;text-align:center"><input type="number" min="0" max="100" style="width:55px;text-align:center;border:0.5px solid #d8d7d0;border-radius:4px;padding:3px" onchange="calcBulkTotal(this)"></td><td class="bulk-total" style="padding:6px 10px;border:0.5px solid #e2e8f0;text-align:center;color:#aaa">--</td><td style="border:0.5px solid #e2e8f0;text-align:center"><select style="border:0.5px solid #d8d7d0;border-radius:4px;padding:3px;font-size:11px"><option>-</option><option>S</option><option>A</option><option>B</option><option>C</option><option>D</option></select></td></tr>
+            </tbody>
+          </table>
+        </div>
         <div class="card">
           <div class="card-head">평가 대상자 목록 <small>5명 · 완료 2명</small></div>
           <table>
@@ -735,7 +760,13 @@ textarea:focus{border-color:#D85A30}
             <span style="font-size:11px;color:#999;margin-left:auto">2025년 사업부서 성과 기준</span>
           </div>
           <p style="font-size:12px;color:#666;margin-bottom:14px;line-height:1.6">2025년 코나아이 6개 사업부서 성과 데이터를 분석하여 전략적 HR 인사이트를 도출합니다.</p>
-          <button id="dashboard-ai-btn" onclick="generateDashboardInsights()" style="background:#7F77DD;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">💡 AI 인사이트 분석 시작</button>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+            <button onclick="generateDashboardInsights('perf_dist')" style="background:#7F77DD;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">📊 성과 분포 분석</button>
+            <button onclick="generateDashboardInsights('top_bottom')" style="background:#185FA5;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">🌟 우수/저성과 패턴</button>
+            <button onclick="generateDashboardInsights('goal_achv')" style="background:#0F6E56;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">🎯 목표 달성률 분석</button>
+            <button onclick="generateDashboardInsights('fairness')" style="background:#854F0B;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">⚖️ 평가 공정성 검토</button>
+          </div>
+          <div id="dashboard-ai-btn" style="display:none"></div>
           <div id="dashboard-ai-loading" style="display:none;align-items:center;gap:10px;margin-top:14px;font-size:12px;color:#666">
             <div style="width:16px;height:16px;border:2px solid #e8e7e0;border-top-color:#7F77DD;border-radius:50%;animation:spin 0.7s linear infinite"></div>
             <span>전사 데이터를 분석 중입니다...</span>
@@ -1058,13 +1089,16 @@ async function aiComment(){
   const btn = document.querySelector('[onclick="aiComment()"]');
   if(!area) return;
 
+  // 달성내용 textarea 값 읽기
+  const resultInputs = document.querySelectorAll('#s-self-eval .goal-result-input');
   const goals = [
     {name:'성과관리 솔루션 자체 개발 및 도입', score:88, weight:40, detail:'AI 기반 자체 평가시스템 설계 및 프로토타입 개발, Netlify 배포까지 완료하여 실제 운영 가능한 시스템 구축'},
     {name:'AX(AI Transformation) 전사 확산 주도', score:95, weight:35, detail:'KONA AX Summit 개최, Claude Enterprise 도입, 전사 워크플로우 조사 완료 및 AI 활용 등급제 설계'},
     {name:'더한옥헤리티지 HR 전략 수립', score:null, weight:25, detail:'호텔운영부문 채용 전략 수립 및 인터뷰 가이드 설계'}
   ];
+  resultInputs.forEach((inp, i) => { if(goals[i] && inp.value.trim()) goals[i].result = inp.value.trim(); });
 
-  const goalsText = goals.map(g=>`- ${g.name} (가중치 ${g.weight}%, 달성점수 ${g.score||'미입력'}점)\n  ${g.detail}`).join('\n');
+  const goalsText = goals.map(g=>`- ${g.name} (가중치 ${g.weight}%, 달성점수 ${g.score||'미입력'}점)\n  ${g.detail}${g.result ? '\n  달성 내용: ' + g.result : ''}`).join('\n');
 
   setLoading(btn, true);
   try {
@@ -1195,6 +1229,8 @@ async function analyzeOrgGrade(){
   const orgPeriod = document.getElementById('ai-org-period')?.value.trim();
   const orgGoal = document.getElementById('ai-org-goal')?.value.trim();
   const orgResult = document.getElementById('ai-org-result')?.value.trim();
+  const extra = document.getElementById('ai-org-extra')?.value.trim();
+  const criteria = document.getElementById('ai-org-criteria')?.value.trim();
   const btn = document.getElementById('ai-org-btn');
 
   if(!orgName || !orgGoal || !orgResult){
@@ -1218,7 +1254,7 @@ async function analyzeOrgGrade(){
 ${orgGoal}
 
 [성과]
-${orgResult}
+${orgResult}${extra ? '\n\n[기타 평가반영 요인]\n' + extra : ''}${criteria ? '\n\n[경영진 평가 기준]\n' + criteria : ''}
 
 [등급 기준]
 S: 100점 이상 (목표 대폭 초과)
@@ -1304,12 +1340,10 @@ function loadOrgExample(idx){
 }
 
 // ─── 대시보드 AI 인사이트 생성 ───
-async function generateDashboardInsights(){
-  const btn = document.getElementById('dashboard-ai-btn');
+async function generateDashboardInsights(category){
   const loadingEl = document.getElementById('dashboard-ai-loading');
   const resultEl = document.getElementById('dashboard-ai-result');
 
-  setLoading(btn, true);
   loadingEl.style.display = 'flex';
   resultEl.style.display = 'none';
 
@@ -1339,31 +1373,31 @@ async function generateDashboardInsights(){
    성과: 신규지자체 4개, 수익률 286%↑, 부가사업 193%
 `;
 
-  const prompts = [
-    { id:'insight-text-1', label:'📈 전사 달성 패턴 분석',
-      prompt:`HR 전략가로서 아래 2025년 코나아이 전사 성과를 분석하여 "전사 달성 패턴 분석"을 작성하세요.\n${data}\n고성과/저성과 조직의 패턴 차이, 목표 설정 난이도 편차, 전반적 성과 수준 평가. 250자 내외, 한국어, 경영진 보고 톤.` },
-    { id:'insight-text-2', label:'⚠️ 반복 미달성 패턴 감지',
-      prompt:`HR 전략가로서 아래 2025년 코나아이 전사 성과를 분석하여 "반복 미달성 패턴 감지" 인사이트를 작성하세요.\n${data}\n구조적 미달성 원인, 주의 필요 조직/영역, HR 개입 포인트. 250자 내외, 한국어, 경영진 보고 톤.` },
-    { id:'insight-text-3', label:'🌟 핵심인재 / 리스크 인재 조기 신호',
-      prompt:`HR 전략가로서 아래 2025년 코나아이 전사 성과를 분석하여 "핵심인재/리스크인재 조기 신호" 인사이트를 작성하세요.\n${data}\n핵심 성과 창출 조직/리더 신호(인재 유지·보상 관점), 지원 필요 조직/리더 신호, 구체적 HR 액션 제언. 250자 내외, 한국어, 경영진 보고 톤.` },
-    { id:'insight-text-4', label:'🔗 조직간 목표 중복 / 시너지 분석',
-      prompt:`HR 전략가로서 아래 2025년 코나아이 전사 성과를 분석하여 "조직간 목표 중복/시너지 분석" 인사이트를 작성하세요.\n${data}\n조직 간 협업 기회 또는 자원 중복, 시너지 낼 수 있는 조합, 조직 구조/협업 체계 관련 제언. 250자 내외, 한국어, 경영진 보고 톤.` }
-  ];
+  const categoryMap = {
+    'perf_dist': { id:'insight-text-1', label:'📊 성과 분포 분석',
+      prompt:`HR 전략가로서 아래 2025년 코나아이 전사 성과를 분석하여 "성과 분포 분석"을 작성하세요.\n${data}\n초과달성/달성/미달성 분포 패턴, 목표 설정 적정성, 성과 편차 원인 분석. 250자 내외, 한국어, 경영진 보고 톤.` },
+    'top_bottom': { id:'insight-text-2', label:'🌟 우수/저성과 패턴',
+      prompt:`HR 전략가로서 아래 2025년 코나아이 전사 성과를 분석하여 "우수/저성과 패턴 분석" 인사이트를 작성하세요.\n${data}\n우수 성과 조직의 공통 특징, 저성과 조직의 공통 원인, 성과 격차 해소를 위한 HR 액션. 250자 내외, 한국어, 경영진 보고 톤.` },
+    'goal_achv': { id:'insight-text-3', label:'🎯 목표 달성률 분석',
+      prompt:`HR 전략가로서 아래 2025년 코나아이 전사 성과를 분석하여 "목표 달성률 분석" 인사이트를 작성하세요.\n${data}\n전사 평균 달성률, 사업부별 달성률 편차, 미달성 조직의 구조적 원인 및 목표 재설정 제언. 250자 내외, 한국어, 경영진 보고 톤.` },
+    'fairness': { id:'insight-text-4', label:'⚖️ 평가 공정성 검토',
+      prompt:`HR 전략가로서 아래 2025년 코나아이 전사 성과를 분석하여 "평가 공정성 검토" 인사이트를 작성하세요.\n${data}\n목표 난이도 편차, 평가 기준 일관성, 공정한 평가를 위한 HR 제도 개선 제언. 250자 내외, 한국어, 경영진 보고 톤.` }
+  };
+
+  const targetCategory = (category && categoryMap[category]) ? category : 'perf_dist';
+  const p = categoryMap[targetCategory];
 
   try {
-    for(const p of prompts){
-      try {
-        const text = await callClaude(p.prompt, 500);
-        const el = document.getElementById(p.id);
-        if(el){ el.textContent = text; el.closest('.ai-insight-block')?.style.setProperty('display','block'); }
-      } catch(e) {
-        const el = document.getElementById(p.id);
-        if(el) el.textContent = '분석 오류: ' + e.message;
-      }
+    try {
+      const text = await callClaude(p.prompt, 500);
+      const el = document.getElementById(p.id);
+      if(el){ el.textContent = text; el.closest('.ai-insight-block')?.style.setProperty('display','block'); }
+    } catch(e) {
+      const el = document.getElementById(p.id);
+      if(el) el.textContent = '분석 오류: ' + e.message;
     }
     resultEl.style.display = 'block';
   } finally {
-    setLoading(btn, false);
     loadingEl.style.display = 'none';
   }
 }
@@ -1371,14 +1405,17 @@ async function generateDashboardInsights(){
 // ─── 목표 개선 초안 ───
 async function aiGoalImprove(){
   const btn = document.querySelector('[onclick="aiGoalImprove()"]');
+  const goalRow = btn.closest('.goal-row');
+  const titleVal = goalRow ? (goalRow.querySelector('.goal-title-input')?.value || '더한옥헤리티지 HR 전략 수립') : '더한옥헤리티지 HR 전략 수립';
+  const initVal = goalRow ? (goalRow.querySelector('.goal-init-input')?.value || '호텔운영부문 HR 전략 수립') : '호텔운영부문 HR 전략 수립';
   setLoading(btn, true);
   try {
     const result = await callClaude(
       `아래 목표를 SMART 기준에 맞게 개선된 버전으로 작성해주세요.
 
 [현재 목표]
-- 과제명: 더한옥헤리티지 HR 전략 수립
-- 이니셔티브: 호텔운영부문 HR 전략 수립
+- 과제명: ${titleVal}
+- 이니셔티브: ${initVal}
 - 가중치: 25%, 기간: 2025.07.01~12.31
 
 SMART 기준 (Specific/Measurable/Achievable/Relevant/Time-bound)으로 개선하여 아래 형식으로 작성하세요:
@@ -1405,6 +1442,23 @@ SMART 기준 (Specific/Measurable/Achievable/Relevant/Time-bound)으로 개선�
   } finally {
     setLoading(btn, false);
   }
+}
+
+// ─── 일괄 조정 테이블 토글 ───
+function toggleBulkTable(){
+  const s = document.getElementById('bulk-table-section');
+  const b = document.getElementById('bulk-toggle-btn');
+  if(s.style.display==='none'){s.style.display='block';b.textContent='일괄 조정 테이블 닫기';b.style.background='#888';}
+  else{s.style.display='none';b.textContent='일괄 조정 테이블 열기';b.style.background='#185FA5';}
+}
+function calcBulkTotal(input){
+  const row=input.closest('tr');
+  const inputs=row.querySelectorAll('input[type=number]');
+  const totalCell=row.querySelector('.bulk-total');
+  const vals=Array.from(inputs).map(i=>parseFloat(i.value)||0);
+  if(vals.every(v=>v===0)){totalCell.textContent='--';totalCell.style.color='#aaa';return;}
+  const total=(vals[0]*0.5+vals[1]*0.3+vals[2]*0.2).toFixed(1);
+  totalCell.textContent=total;totalCell.style.color='#1a1a18';
 }
 
 // ─── 등급 버튼 선택 ───
@@ -1573,6 +1627,14 @@ function selGrade(btn, group){
             <div style="font-size:11px;color:#999;margin-bottom:4px;font-weight:600;text-transform:uppercase">성과 요약</div>
             <textarea id="ai-org-result" style="width:100%;border:0.5px solid #d8d7d0;border-radius:8px;padding:8px 10px;font-size:12px;font-family:inherit;background:#fafaf8;resize:vertical;min-height:100px;outline:none" placeholder="실제 달성 성과를 입력하세요"></textarea>
           </div>
+          <div style="margin-bottom:14px">
+            <div style="font-size:12px;font-weight:600;color:#1a1a18;margin-bottom:6px">기타 평가반영 요인 <span style="font-weight:400;color:#999">(선택)</span></div>
+            <textarea id="ai-org-extra" style="width:100%;border:0.5px solid #d8d7d0;border-radius:8px;padding:8px 10px;font-size:12px;font-family:inherit;background:#fafaf8;resize:vertical;min-height:60px;outline:none" placeholder="예: 팀 협업 기여도, 특별 프로젝트 성과, 예기치 못한 외부 환경 변수 등"></textarea>
+          </div>
+          <div style="margin-bottom:14px">
+            <div style="font-size:12px;font-weight:600;color:#1a1a18;margin-bottom:6px">경영진 평가 기준 설정 <span style="font-weight:400;color:#999">(선택)</span></div>
+            <textarea id="ai-org-criteria" style="width:100%;border:0.5px solid #d8d7d0;border-radius:8px;padding:8px 10px;font-size:12px;font-family:inherit;background:#fafaf8;resize:vertical;min-height:60px;outline:none" placeholder="예: 올해는 매출 성장보다 팀 안정화에 가중치를 둔다. 전년 대비 개선도를 중시한다."></textarea>
+          </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
             <button id="ai-org-btn" onclick="analyzeOrgGrade()" style="background:#7F77DD;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">📊 AI 조직평가 분석</button>
             <button onclick="loadOrgExample(0)" style="background:#fff;border:0.5px solid #7F77DD;color:#7F77DD;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-family:inherit">DID 국내 예시</button>
@@ -1600,7 +1662,7 @@ function selGrade(btn, group){
         </div>
         <style>
           @keyframes spin { to { transform: rotate(360deg); } }
-          #ai-org-name:focus, #ai-org-period:focus, #ai-org-goal:focus, #ai-org-result:focus { border-color:#7F77DD; background:#fff; }
+          #ai-org-name:focus, #ai-org-period:focus, #ai-org-goal:focus, #ai-org-result:focus, #ai-org-extra:focus, #ai-org-criteria:focus { border-color:#7F77DD; background:#fff; }
         </style>
 
         <div style="background:#FAEEDA;border-radius:8px;padding:10px 14px;font-size:12px;color:#633806;margin-bottom:14px;line-height:1.6">
@@ -1906,11 +1968,11 @@ function selGrade(btn, group){
           <!-- 목표 1 -->
           <div class="goal-row" style="border:0.5px solid #e8e7e0;border-radius:10px;padding:14px 16px;margin-bottom:10px;background:#fafaf8">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
-              <div style="font-size:13px;font-weight:600">성과관리 솔루션 자체 개발 및 도입</div>
-              <span class="badge badge-done">합의완료</span>
+              <input type="text" class="goal-title-input" value="성과관리 솔루션 자체 개발 및 도입" style="width:100%;border:0.5px solid #d8d7d0;border-radius:6px;padding:5px 8px;font-size:13px;font-weight:600;font-family:inherit;background:#fafaf8;margin-bottom:4px">
+              <span class="badge badge-done" style="flex-shrink:0;margin-left:8px">합의완료</span>
             </div>
             <div style="font-size:12px;color:#888;margin-bottom:8px">가중치 40% · 2025.07.01 ~ 2025.12.31</div>
-            <div style="font-size:12px;color:#555;line-height:1.6;margin-bottom:10px">AI 기반 자체 평가시스템 설계 및 프로토타입 개발, Netlify 배포까지 완료하여 실제 운영 가능한 시스템 구축</div>
+            <textarea class="goal-init-input" style="width:100%;border:0.5px solid #d8d7d0;border-radius:6px;padding:5px 8px;font-size:12px;font-family:inherit;background:#fafaf8;min-height:40px;resize:none;margin-bottom:4px" placeholder="이니셔티브를 입력하세요">AI 기반 자체 평가시스템 설계 및 프로토타입 개발, Netlify 배포까지 완료하여 실제 운영 가능한 시스템 구축</textarea>
             <!-- AI 피드백 박스 -->
             <div style="background:#EAF3DE;border-radius:8px;padding:10px 14px;font-size:12px;line-height:1.6;display:flex;gap:10px;align-items:flex-start">
               <span style="background:#1D9E75;color:#fff;padding:2px 7px;border-radius:6px;font-size:10px;font-weight:600;flex-shrink:0;margin-top:1px">AI</span>
@@ -1924,11 +1986,11 @@ function selGrade(btn, group){
           <!-- 목표 2 -->
           <div class="goal-row" style="border:0.5px solid #e8e7e0;border-radius:10px;padding:14px 16px;margin-bottom:10px;background:#fafaf8">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
-              <div style="font-size:13px;font-weight:600">AX(AI Transformation) 전사 확산 주도</div>
-              <span class="badge badge-done">합의완료</span>
+              <input type="text" class="goal-title-input" value="AX(AI Transformation) 전사 확산 주도" style="width:100%;border:0.5px solid #d8d7d0;border-radius:6px;padding:5px 8px;font-size:13px;font-weight:600;font-family:inherit;background:#fafaf8;margin-bottom:4px">
+              <span class="badge badge-done" style="flex-shrink:0;margin-left:8px">합의완료</span>
             </div>
             <div style="font-size:12px;color:#888;margin-bottom:8px">가중치 35% · 2025.07.01 ~ 2025.12.31</div>
-            <div style="font-size:12px;color:#555;line-height:1.6;margin-bottom:10px">KONA AX Summit 개최, Claude Enterprise 도입, 전사 워크플로우 조사 완료 및 AI 활용 등급제 설계</div>
+            <textarea class="goal-init-input" style="width:100%;border:0.5px solid #d8d7d0;border-radius:6px;padding:5px 8px;font-size:12px;font-family:inherit;background:#fafaf8;min-height:40px;resize:none;margin-bottom:4px" placeholder="이니셔티브를 입력하세요">KONA AX Summit 개최, Claude Enterprise 도입, 전사 워크플로우 조사 완료 및 AI 활용 등급제 설계</textarea>
             <div style="background:#EAF3DE;border-radius:8px;padding:10px 14px;font-size:12px;line-height:1.6;display:flex;gap:10px;align-items:flex-start">
               <span style="background:#1D9E75;color:#fff;padding:2px 7px;border-radius:6px;font-size:10px;font-weight:600;flex-shrink:0;margin-top:1px">AI</span>
               <div style="color:#085041">
@@ -1941,11 +2003,11 @@ function selGrade(btn, group){
           <!-- 목표 3 - AI 개선 제안 -->
           <div class="goal-row" style="border:0.5px solid #F0B87A;border-radius:10px;padding:14px 16px;margin-bottom:10px;background:#FFFBF5">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
-              <div style="font-size:13px;font-weight:600">더한옥헤리티지 HR 전략 수립</div>
-              <span class="badge badge-todo">합의 대기</span>
+              <input type="text" class="goal-title-input" value="더한옥헤리티지 HR 전략 수립" style="width:100%;border:0.5px solid #d8d7d0;border-radius:6px;padding:5px 8px;font-size:13px;font-weight:600;font-family:inherit;background:#fafaf8;margin-bottom:4px">
+              <span class="badge badge-todo" style="flex-shrink:0;margin-left:8px">합의 대기</span>
             </div>
             <div style="font-size:12px;color:#888;margin-bottom:8px">가중치 25% · 2025.07.01 ~ 2025.12.31</div>
-            <div style="font-size:12px;color:#555;line-height:1.6;margin-bottom:10px">호텔운영부문 HR 전략 수립</div>
+            <textarea class="goal-init-input" style="width:100%;border:0.5px solid #d8d7d0;border-radius:6px;padding:5px 8px;font-size:12px;font-family:inherit;background:#fafaf8;min-height:40px;resize:none;margin-bottom:4px" placeholder="이니셔티브를 입력하세요">호텔운영부문 HR 전략 수립</textarea>
             <!-- AI 개선 제안 -->
             <div style="background:#FEF3E2;border-radius:8px;padding:10px 14px;font-size:12px;line-height:1.6;display:flex;gap:10px;align-items:flex-start">
               <span style="background:#D97706;color:#fff;padding:2px 7px;border-radius:6px;font-size:10px;font-weight:600;flex-shrink:0;margin-top:1px">AI</span>
