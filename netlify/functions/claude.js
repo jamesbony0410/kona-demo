@@ -18,6 +18,8 @@ exports.handler = async (event) => {
   return {
     statusCode: 200,
     headers: { "Access-Control-Allow-Origin": "*" },
-    body: JSON.stringify(data)
-  };
-};
+   body: JSON.stringify({ 
+  model: 'claude-sonnet-4-6',
+  messages, 
+  max_tokens 
+})
