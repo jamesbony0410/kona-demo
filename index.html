@@ -1103,10 +1103,20 @@ async function callClaude(prompt, maxTokens=800){
   });
   if(!res.ok){
     const err = await res.json().catch(()=>({}));
-    throw new Error(err.error?.message || `API 오류 (${res.status})`);
+    throw new Error(err.error?.message || 'API 오류 ('+res.status+')');
   }
   const data = await res.json();
-  return data.content.map(b=>b.text||'').join('');
+  // 여러 응답 형식 처리
+  if(data.content && Array.isArray(data.content)){
+    return data.content.map(function(b){return b.text||'';}).join('');
+  }
+  if(typeof data.content === 'string') return data.content;
+  if(data.text) return data.text;
+  if(data.message) return data.message;
+  if(data.completion) return data.completion;
+  if(typeof data === 'string') return data;
+  // 마지막 수단: 전체 JSON 문자열로 반환 (디버깅용)
+  throw new Error('응답 형식을 인식할 수 없습니다: '+JSON.stringify(data).slice(0,100));
 }
 
 // ─── 로딩 표시 헬퍼 ───
